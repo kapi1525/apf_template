@@ -1,0 +1,3 @@
+[submodule "subprojects/appframework"]
+	path = subprojects/appframework
+	url = https://github.com/kapigames/appframework
