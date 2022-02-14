@@ -14,7 +14,7 @@ public:
     void run();
     void end();
 
-    // Thiese are inherited from base apf::app class
+    // These are inherited from base apf::app class
     // args arguments;                  // Holds command line arguments and can parse them, look apf::args class for more info.
     // version appframework_version;    // Holds version of appframework, i think its obvious.
 
