@@ -1,0 +1,57 @@
+name: build
+
+on: [push, pull_request]
+
+
+jobs:
+  build:
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          # Windows
+          - os: windows-latest
+            os-fancy-name: 'windows'
+            target-arch: 'x86_64'
+            msvc-target-arch: 'x86_64'
+            meson-configure-args: '--werror'
+
+          # Linux
+          - os: ubuntu-latest
+            os-fancy-name: 'linux'
+            target-arch: 'x86_64'
+            meson-configure-args: '--werror'
+
+          # MacOS
+          - os: macos-latest
+            os-fancy-name: 'macos'
+            target-arch: 'x86_64'
+            meson-configure-args: '--werror'
+    
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - uses: ilammy/msvc-dev-cmd@v1.10.0
+      if: matrix.os-fancy-name == 'windows'
+    
+    - uses: hendrikmuhs/ccache-action@v1
+      if: matrix.os-fancy-name != 'windows'
+      with:
+        key: ${{ matrix.os }}-${{ matrix.target-arch }}
+    
+    - uses: actions/setup-python@v3
+      with:
+        cache: 'pip'
+
+    - name: Install meson
+      run: pip install meson ninja -r requirements.txt
+
+
+    - name: configure
+      run: meson --buildtype=debugoptimized ${{ matrix.meson-configure-args }} bin
+    
+    - name: compile
+      run: meson compile -C bin -j 10
