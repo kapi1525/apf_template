@@ -12,7 +12,7 @@ void apf_template::start() {
 // Called after start
 // Do whatever you want
 int apf_template::run() {
-    return 0;
+    return 1;   // Since apf 0.4 app::run() function will be infinite loop until you return 1.
 }
 
 // Called at the end
