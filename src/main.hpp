@@ -12,7 +12,7 @@
 class apf_template : public apf::app {
 public:
     void start();
-    void run();
+    int run();
     void end();
 
     // These are inherited from base apf::app class
@@ -20,5 +20,5 @@ public:
     // version appframework_version;    // Holds version of appframework, i think its obvious.
 
     // version is struct that can hold version information, it can also be printed using cout and converted to string.
-    version apf_template_version = {0,3,0};     // Version "v0.3.0"
+    version apf_template_version = {0,4,0};     // Version "v0.3.0"
 };

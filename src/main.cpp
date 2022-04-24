@@ -11,8 +11,8 @@ void apf_template::start() {
 
 // Called after start
 // Do whatever you want
-void apf_template::run() {
-
+int apf_template::run() {
+    return 0;
 }
 
 // Called at the end

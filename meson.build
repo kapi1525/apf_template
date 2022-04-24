@@ -4,10 +4,10 @@ project('apf template', 'c', 'cpp',
   license : 'MIT')
 
 # get appframework subproject and get dependency from it
-appframework_proj = subproject('appframework')
-appframework_dep = appframework_proj.get_variable('appframework_dep')
+apf_proj = subproject('appframework')
+apf_dep = apf_proj.get_variable('apf_dep')
 
 files = files('src/main.cpp')
 
 # create executable with apf dependency
-template = executable('template', files, dependencies: [dependency('threads'), appframework_dep] )
+template = executable('template', files, dependencies: [dependency('threads'), apf_dep] )
