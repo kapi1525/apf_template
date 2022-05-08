@@ -1,24 +1,21 @@
 #pragma once
-#include <iostream>             // for std::cout
+#include <iostream>     // Not realy needed, its included by apf/all.hpp
 
-#include "appframework.hpp"     // main header with app class and some other common things
-// Uncoment these if you want some extra features.
-// #include "apf/term.hpp"      // terminal functions.
-// #include "apf/logs.hpp"      // logging.
+#include "apf/all.hpp"  // Includes every part of apf.
 
 
 
-// This is main app class, you can add here what ever you want.
+// This is your main app class.
 class apf_template : public apf::app {
 public:
     void start();
     int run();
     void end();
 
-    // These are inherited from base apf::app class
-    // args arguments;                  // Holds command line arguments and can parse them, look apf::args class for more info.
-    // version appframework_version;    // Holds version of appframework, i think its obvious.
+    // Your app class inherits these members from apf::app.
+    // args arguments;                  Holds command line arguments and can parse them, look apf::args class for more info.
+    // version appframework_version;    Holds version of appframework, i think its obvious.
 
     // version is struct that can hold version information, it can also be printed using cout and converted to string.
-    version apf_template_version = {0,4,0};     // Version "v0.3.0"
+    version apf_template_version = {0,4,0};
 };

@@ -2,39 +2,23 @@
 
 
 
-// This is called when your application starts
-// Init everything you need here
+// Called when app starts
 void apf_template::start() {
     // versions can be converted to strings
     std::cout << "apf template " << apf_template_version << " for apf " << appframework_version << ".\n";
 }
 
-// Called after start
-// Do whatever you want
+// Called infinitely until you return 1, its simmilar to a "game loop".
 int apf_template::run() {
-    return 1;   // Since apf 0.4 app::run() function will be infinite loop until you return 1.
+    return 1;   // Run only once.
 }
 
-// Called at the end
-// Deinit everything and reset terminal if you were using some fancy term functions
+// Called before your app finishes
 void apf_template::end() {
-    // apf::term::reset();
-    std::cout << "\n"; // its also nice to add aditional newline after your program closes.
+    // apf::term::reset();      // Reset terminal if you used some fancy apf::term functions.
+    std::cout << "\n";          // Its nice to put a new line at the end.
 }
 
 
-// This macro creates main() function for us.
-// This default main function creates apf_template object passes arguments to it and calls start(); run(); and end();.
+// This macro setsup main() function for us, you dont need to wory about it but if you need more control you can define main yourself. 
 APF_MAIN(apf_template)
-
-// This is how default main() looks like, if you need little bit more control of main you can uncomment this and comment out APF_MAIN macro.
-/*
-int main(int argc, char const *argv[]) {
-    apf::app* app_ptr = new apf_template;
-    app_ptr->arguments = apf::args(argc, argv);
-    app_ptr->start();
-    app_ptr->run();
-    app_ptr->end();
-    delete app_ptr;
-}
-*/
