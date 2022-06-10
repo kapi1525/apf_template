@@ -6,22 +6,34 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "meson compile -C ${config:mesonbuild.buildFolder}",
-            "group": "build"
-        },
-        {
-            "label": "configure debug",
-            "type": "shell",
-            "command": "clear && rm ${config:mesonbuild.buildFolder} -r -f && meson ${config:mesonbuild.buildFolder}",
+            "command": "clear; if [ ! -d \"${config:mesonbuild.buildFolder}\" ]; then meson \"${config:mesonbuild.buildFolder}\"; fi; meson compile -C \"${config:mesonbuild.buildFolder}\"",
             "windows": {
-                "command": "cls && meson ${config:mesonbuild.buildFolder}"
+                "command": "meson \"${config:mesonbuild.buildFolder}\" && meson compile -C \"${config:mesonbuild.buildFolder}\""
             },
             "group": "build"
         },
         {
-            "label": "configure release",
+            "label": "debug",
             "type": "shell",
-            "command": "clear && rm ${config:mesonbuild.buildFolder} -r -f && meson --buildtype release ${config:mesonbuild.buildFolder}",
+            "command": "clear; if [ ! -d \"${config:mesonbuild.buildFolder}\" ]; then meson --buildtype debug \"${config:mesonbuild.buildFolder}\"; else meson --reconfigure --buildtype debug \"${config:mesonbuild.buildFolder}\"; fi;",
+            "windows": {
+                "command": "cls && meson --buildtype debug ${config:mesonbuild.buildFolder}"
+            },
+            "group": "build"
+        },
+        {
+            "label": "release",
+            "type": "shell",
+            "command": "clear; if [ ! -d \"${config:mesonbuild.buildFolder}\" ]; then meson --buildtype release \"${config:mesonbuild.buildFolder}\"; else meson --reconfigure --buildtype release \"${config:mesonbuild.buildFolder}\"; fi;",
+            "windows": {
+                "command": "cls && meson --buildtype release ${config:mesonbuild.buildFolder}"
+            },
+            "group": "build"
+        },
+        {
+            "label": "tests",
+            "type": "shell",
+            "command": "clear; if [ ! -d \"${config:mesonbuild.buildFolder}\" ]; then meson \"${config:mesonbuild.buildFolder}\"; fi; meson test -C \"${config:mesonbuild.buildFolder}\"",
             "windows": {
                 "command": "cls && meson --buildtype release ${config:mesonbuild.buildFolder}"
             },

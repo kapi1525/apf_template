@@ -1,7 +1,7 @@
-project('apf template', 'c', 'cpp',
-  version : '0.4.0',
-  default_options : ['warning_level=3', 'c_std=c17', 'cpp_std=c++17'],
-  license : 'MIT')
+project('apf template', 'cpp',
+  version : '0.4.1',
+  default_options : ['warning_level=3', 'cpp_std=c++17']
+)
 
 # get apf dependency.
 apf_dep = subproject('appframework').get_variable('apf_dep')
