@@ -17,5 +17,5 @@ public:
     // version appframework_version;    Holds version of appframework, i think its obvious.
 
     // version is struct that can hold version information, it can also be printed using cout and converted to string.
-    version apf_template_version = {0,4,1};
+    version apf_template_version = {0,4,2};
 };
